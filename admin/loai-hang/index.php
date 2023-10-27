@@ -14,14 +14,18 @@ if (exist_param("btn_list")) {
     $items = loai_select_all();
     $VIEW_NAME = "list.php";
 } else if (exist_param("btn_insert")) {
+    $ten_loai = $_POST['ten_loai'];
 
-    //insert vào db
-    loai_insert($ten_loai);
-
-    // Chuyển hướng đến danh sách
-    header('location: index.php?btn_list');
-    exit;
-
+    if (loai_exist($ten_loai)) {
+        $error = 'Tên loại đã tồn tại.';
+        $VIEW_NAME = "add.php";
+    } else {
+        //insert vào db
+        loai_insert($ten_loai);
+        // Chuyển hướng đến danh sách
+        header('location: index.php?btn_list');
+        exit;
+    }
 } else if (exist_param("btn_edit")) {
     #lấy dữ liệu từ form
     $ma_loai = $_REQUEST['ma_loai'];

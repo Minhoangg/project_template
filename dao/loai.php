@@ -40,7 +40,12 @@ function loai_select_by_id($ma_loai)
 }
 
 
-
+// kiểm tra sự tồn tại theo mã loại
+function loai_exist($ten_loai)
+{
+    $sql = "SELECT count(*) FROM loai WHERE ten_loai=?";
+    return pdo_query_value($sql, $ten_loai) > 0;
+}
 
 
 

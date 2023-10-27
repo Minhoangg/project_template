@@ -19,7 +19,7 @@ if (exist_param("btn_list")) {
 
 
 } else if (exist_param("btn_insert")) {
-    #lấy dữ liệu từ form
+
     $ten_hh = $_POST['ten_hh'];
     $don_gia = $_POST['don_gia'];
     $giam_gia = $_POST['giam_gia'];
@@ -29,15 +29,12 @@ if (exist_param("btn_list")) {
     $mo_ta = $_POST['mo_ta'];
     $ngay_nhap = $_POST['ngay_nhap'];
 
-    // $hinh = $_FILES['hinh']['name'];
-    // Upload file lên host
     $hinh = save_file('hinh', "$UPLOAD_URL/products/");
-    //insert vào db
-    hang_hoa_insert($ten_hh, $don_gia, $giam_gia, $hinh, $ma_loai, $dac_biet, $so_luot_xem, $ngay_nhap, $mo_ta);
 
-    header('location: index.php?btn_list');
-    exit;
 
+        hang_hoa_insert($ten_hh, $don_gia, $giam_gia, $hinh, $ma_loai, $dac_biet, $so_luot_xem, $ngay_nhap, $mo_ta);
+        header('location: index.php?btn_list');
+        exit;
 
 
 } else if (exist_param("btn_edit")) {
@@ -98,4 +95,3 @@ if (exist_param("btn_list")) {
     $VIEW_NAME = "add.php";
 }
 require "../layout.php";
-?>

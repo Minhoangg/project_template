@@ -14,7 +14,6 @@
                                     extract($loai_hang);
                                     echo '<option value="' . $ma_loai . '">' . $ten_loai . '</option>';
                                 }
-
                                 ?>
                             </select>
                         </div>
@@ -33,14 +32,13 @@
                                 </label>
                             </div>
                         </div>
-
-
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-4">
                             <label for="ten_hh" class="form-label">Tên hàng hóa</label>
                             <input type="text" name="ten_hh" id="ten_hh" class="form-control">
                             <p id="ten_hh_error" style="color: red;"></p>
+
                         </div>
                         <div class="form-group col-sm-4">
                             <label for="hinh" class="form-label">Ảnh sản phẩm</label>
@@ -93,55 +91,53 @@
 </div>
 
 <script>
-  function validateForm() {
-    var valid = true;
+    function validateForm() {
+        var valid = true;
 
-    var ten_hh = document.getElementById("ten_hh").value;
-    var hinh = document.getElementById("hinh").value;
-    var don_gia = parseInt(document.getElementById("don_gia").value, 10);  // chuyển sang kiểu số nguyên để so sánh
-    var giam_gia = parseInt(document.getElementById("giam_gia").value, 10);
-    var mo_ta = document.getElementById("txtarea").value;
+        var ten_hh = document.getElementById("ten_hh").value;
+        var hinh = document.getElementById("hinh").value;
+        var don_gia = parseInt(document.getElementById("don_gia").value, 10); // chuyển sang kiểu số nguyên để so sánh
+        var giam_gia = parseInt(document.getElementById("giam_gia").value, 10);
+        var mo_ta = document.getElementById("txtarea").value;
 
-    if (ten_hh === "") {
-        document.getElementById("ten_hh_error").innerText = "Vui lòng nhập tên hàng hóa.";
-        valid = false;
-    } else {
-        document.getElementById("ten_hh_error").innerText = "";
+        if (ten_hh === "") {
+            document.getElementById("ten_hh_error").innerText = "Vui lòng nhập tên hàng hóa.";
+            valid = false;
+        } else {
+            document.getElementById("ten_hh_error").innerText = "";
+        }
+
+        if (hinh === "") {
+            document.getElementById("hinh_error").innerText = "Vui lòng chọn một ảnh.";
+            valid = false;
+        } else {
+            document.getElementById("hinh_error").innerText = "";
+        }
+
+        if (isNaN(don_gia) || don_gia <= 0) {
+            document.getElementById("don_gia_error").innerText = "Vui lòng nhập giá trị hợp lệ cho đơn giá.";
+            valid = false;
+        } else {
+            document.getElementById("don_gia_error").innerText = "";
+        }
+
+        if (isNaN(giam_gia) || giam_gia < 0) {
+            document.getElementById("giam_gia_error").innerText = "Vui lòng nhập giá trị hợp lệ cho giảm giá.";
+            valid = false;
+        } else if (giam_gia > don_gia) {
+            document.getElementById("giam_gia_error").innerText = "Giảm giá không được lớn hơn đơn giá.";
+            valid = false;
+        } else {
+            document.getElementById("giam_gia_error").innerText = "";
+        }
+
+        if (mo_ta === "") {
+            document.getElementById("mo_ta_error").innerText = "Vui lòng nhập mô tả.";
+            valid = false;
+        } else {
+            document.getElementById("mo_ta_error").innerText = "";
+        }
+
+        return valid;
     }
-
-    if (hinh === "") {
-        document.getElementById("hinh_error").innerText = "Vui lòng chọn một ảnh.";
-        valid = false;
-    } else {
-        document.getElementById("hinh_error").innerText = "";
-    }
-
-    if (isNaN(don_gia) || don_gia <= 0) {
-        document.getElementById("don_gia_error").innerText = "Vui lòng nhập giá trị hợp lệ cho đơn giá.";
-        valid = false;
-    } else {
-        document.getElementById("don_gia_error").innerText = "";
-    }
-
-    if (isNaN(giam_gia) || giam_gia < 0) {
-        document.getElementById("giam_gia_error").innerText = "Vui lòng nhập giá trị hợp lệ cho giảm giá.";
-        valid = false;
-    } else if (giam_gia > don_gia) {
-        document.getElementById("giam_gia_error").innerText = "Giảm giá không được lớn hơn đơn giá.";
-        valid = false;
-    } else {
-        document.getElementById("giam_gia_error").innerText = "";
-    }
-
-    if (mo_ta === "") {
-        document.getElementById("mo_ta_error").innerText = "Vui lòng nhập mô tả.";
-        valid = false;
-    } else {
-        document.getElementById("mo_ta_error").innerText = "";
-    }
-
-    return valid;
-}
-
-
 </script>

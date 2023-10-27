@@ -60,6 +60,26 @@ function hang_hoa_select_by_loai($ma_loai)
 
 
 
+function hang_hoa_exist($ma_hh)
+{
+    $sql = "SELECT count(*) FROM hang_hoa WHERE ma_hh=?";
+    return pdo_query_value($sql, $ma_hh) > 0;
+}
+function hang_hoa_exist_add($ten_hh)
+{
+    $sql = "SELECT count(*) FROM hang_hoa WHERE ten_hh=?";
+    return pdo_query_value($sql, $ten_hh) > 0;
+}
+function hang_hoa_exist_update($ma_hh, $ten_hh)
+{
+    $sql = "SELECT count(*) FROM hang_hoa WHERE ma_hh!=? and ten_hh=?";
+    return pdo_query_value($sql, $ma_hh, $ten_hh) > 0;
+}
+
+
+
+
+
 
 
 // client -------------------=

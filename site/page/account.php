@@ -4,8 +4,6 @@
     }
     ?>
 
-
-
   <div class="content">
       <div class="container">
           <div class="box">
@@ -23,6 +21,7 @@
                               <a href="index.php?act=logout">
                                   <li class="slide-bar"><i class="fa-solid fa-right-from-bracket"></i><span> Đăng xuất</span></li>
                               </a>
+
 
                           </ul>
                       </div>
@@ -50,7 +49,7 @@
                                   <label for="" class="input-label">
                                       Mật khẩu
                                   </label>
-                                  <input type="text" placeholder="Thêm mật khẩu" class="input-field" name="mat_khau" value="<?= $mat_khau ?>">
+                                  <input type="text" placeholder="Thêm mật khẩu" class="input-field" name="mat_khau" value="<?=   $mat_khau ?>">
                               </div>
                               <input type="hidden" name="id" value="<?= $ma_kh ?>">
                               <button type="submit" name="btn-edit" class="btn-update">Cập nhật</button>

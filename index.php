@@ -166,17 +166,32 @@
 
 
                         case 'register':
-                            if (isset($_POST['register']) && ($_POST['register'])) {
+                            if (isset($_POST['register']) && $_POST['register']) {
                                 $mat_khau = $_POST['mat_khau'];
                                 $ho_ten = $_POST['ho_ten'];
                                 $email = $_POST['email'];
-
-                                // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
-                                $hashed_password = password_hash($mat_khau, PASSWORD_DEFAULT);
-
-                                khach_hang_register($hashed_password, $ho_ten, $email);
-                                $thongbao = "Bạn đã đăng ký thành công";
+                                $error_hoten = '';
+                                $error_email = '';
+                            
+                                if (khach_hang_exist_ho_ten($ho_ten)) {
+                                    $error_hoten = '<a class="text-red">Tên đăng nhập đã tồn tại.</a>';
+                                }
+                                
+                                if (khach_hang_exist_email($email)) {
+                                    $error_email = '<a class="text-red">Email đã tồn tại.</a>';
+                                }
+                            
+                                // Kiểm tra nếu không có lỗi
+                                if (empty($error_hoten) && empty($error_email)) {
+                                    // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
+                                    $hashed_password = password_hash($mat_khau, PASSWORD_DEFAULT);
+                            
+                                    // Tiếp tục đăng ký nếu không có lỗi
+                                    khach_hang_register($hashed_password, $ho_ten, $email);
+                                    $thongbao = "Bạn đã đăng ký thành công";
+                                }
                             }
+                            
                             include "site/account/register.php";
                             break;
 

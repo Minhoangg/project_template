@@ -55,8 +55,27 @@ function khach_hang_select_by_id($ma_kh)
 
 
 
+// kiểm tra sự tồn tại theo mã khách hàng
+function khach_hang_exist($ma_kh)
+{
+    $sql = "SELECT count(*) FROM khach_hang WHERE ma_kh=?";
+    return pdo_query_value($sql, $ma_kh) > 0;
+}
 
 
+// kiểm tra sự tồn tại theo mã khách hàng
+function khach_hang_exist_ho_ten($ho_ten)
+{
+    $sql = "SELECT count(*) FROM khach_hang WHERE ho_ten=?";
+    return pdo_query_value($sql, $ho_ten) > 0;
+}
+
+// kiểm tra sự tồn tại theo email
+function khach_hang_exist_email($email)
+{
+    $sql = "SELECT count(*) FROM khach_hang WHERE email=?";
+    return pdo_query_value($sql, $email) > 0;
+}
 
 
 
